@@ -9,7 +9,6 @@ public class SceneLoader : MonoBehaviour
 
     [SerializeField] private Animator transition; 
     public float transitionTime = 5.0f;
-    private bool _buttonClicked;
 
     private void Awake()
     {
@@ -52,13 +51,9 @@ public class SceneLoader : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        transition.SetTrigger("Start");
-
         Cinematic.SetActive(true);
 
-        yield return new WaitForSeconds(5f);
-
-        LoadNextLevel();
+        transition.SetTrigger("Start");
 
     }
 }
