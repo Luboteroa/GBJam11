@@ -62,15 +62,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Down"",
-                    ""type"": ""Button"",
-                    ""id"": ""b648c9ce-d52b-4062-bff2-4a5f8355ac6e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -99,7 +90,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""25cb2454-a389-420c-b8fb-8f55148e4358"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -161,17 +152,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3d6537cb-cc16-468b-ac80-6e2b360e7a20"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Down"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -190,7 +170,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_PlayerGame_Attack = m_PlayerGame.FindAction("Attack", throwIfNotFound: true);
         m_PlayerGame_Pause = m_PlayerGame.FindAction("Pause", throwIfNotFound: true);
         m_PlayerGame_Jump = m_PlayerGame.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerGame_Down = m_PlayerGame.FindAction("Down", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
     }
@@ -258,7 +237,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerGame_Attack;
     private readonly InputAction m_PlayerGame_Pause;
     private readonly InputAction m_PlayerGame_Jump;
-    private readonly InputAction m_PlayerGame_Down;
     public struct PlayerGameActions
     {
         private @Controls m_Wrapper;
@@ -267,7 +245,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_PlayerGame_Attack;
         public InputAction @Pause => m_Wrapper.m_PlayerGame_Pause;
         public InputAction @Jump => m_Wrapper.m_PlayerGame_Jump;
-        public InputAction @Down => m_Wrapper.m_PlayerGame_Down;
         public InputActionMap Get() { return m_Wrapper.m_PlayerGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -289,9 +266,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Down.started += instance.OnDown;
-            @Down.performed += instance.OnDown;
-            @Down.canceled += instance.OnDown;
         }
 
         private void UnregisterCallbacks(IPlayerGameActions instance)
@@ -308,9 +282,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Down.started -= instance.OnDown;
-            @Down.performed -= instance.OnDown;
-            @Down.canceled -= instance.OnDown;
         }
 
         public void RemoveCallbacks(IPlayerGameActions instance)
@@ -372,7 +343,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnDown(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
