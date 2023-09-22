@@ -13,15 +13,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckRadius;
-   
+    [SerializeField] private Weapon _weapon;
+    [SerializeField] private Bullet _bullet;
+
     private Vector2 playerMovement;
     private Controls playerInput;
     private Rigidbody2D rb;
     private bool isAttacking;
     private bool isJump;
     private bool isGrounded;
-    private bool doubleJump;
     private bool down;
+    private bool isFacingRight = true;
+    private int direction = 1;
+
 
     private void Awake()
     {
@@ -30,8 +34,8 @@ public class PlayerController : MonoBehaviour
         
         playerInput.PlayerGame.Attack.started += Attack;
         playerInput.PlayerGame.Attack.canceled += FinishAttack;
-        
-        
+        playerInput.PlayerGame.Move.started += context => ChangePlayerScale(context.ReadValue<Vector2>().x);
+
     }
     
     private void OnEnable()
@@ -44,12 +48,6 @@ public class PlayerController : MonoBehaviour
         playerInput.PlayerGame.Disable();
     }
 
-   
-   
-    private void FinishAttack(InputAction.CallbackContext obj)
-    {
-        isAttacking = false;
-    }
     private void Update()
     {
        PlayerMove();
@@ -67,29 +65,16 @@ public class PlayerController : MonoBehaviour
     {
             if (down ==true && playerInput.PlayerGame.Jump.WasPressedThisFrame() && isGrounded)
             {
-                     Debug.Log("baja");
+                Debug.Log("baja");
             }
             else if (playerInput.PlayerGame.Jump.WasPerformedThisFrame() && isGrounded && down == false)
-            {
-                
-                rb.velocity = new Vector2(rb.velocity.x, jump);
-                doubleJump = true;
-            }         
-            else if((playerInput.PlayerGame.Jump.WasPerformedThisFrame() && doubleJump == true))
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jump);               
-                doubleJump = false;
-                playerInput.PlayerGame.Jump.Disable();
-            }  
+            {               
+                rb.velocity = new Vector2(rb.velocity.x, jump);           
+            }                                                               
             else if (playerInput.PlayerGame.Jump.WasReleasedThisFrame())
             {
                 rb.velocity = new Vector2(rb.velocity.x, -jumpFall);
-            }
-            else if(isGrounded)
-            {
-                playerInput.PlayerGame.Jump.Enable();            
-            } 
-            
+            }                  
     }
     private bool IsGrounded() => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); 
     #endregion
@@ -109,13 +94,37 @@ public class PlayerController : MonoBehaviour
             down = false;
         }
     }
-    #endregion
 
-    #region ATTACK
+    private void ChangePlayerScale(float inputDirection)
+    {
+        if (inputDirection < 0)
+        {
+            direction = isFacingRight ? -1 : 1;
+            isFacingRight = false;
+        }
+        else
+        {
+            direction = isFacingRight ? 1 : -1;
+            isFacingRight = true;
+        }
+
+        transform.localScale = new Vector2(transform.localScale.x * direction, transform.localScale.y);
+    }
+        #endregion
+
+        #region ATTACK
     private void Attack(InputAction.CallbackContext context)
     { 
-        Debug.Log("Attack");
-        isAttacking = true;
+        if(_weapon.canAttack == true)
+        {
+            Debug.Log("entra");
+            isAttacking = true;
+            _bullet.Shot();
+        } 
+    }
+    private void FinishAttack(InputAction.CallbackContext context)
+    {
+        isAttacking = false;
     }
     #endregion
 
