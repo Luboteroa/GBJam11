@@ -16,15 +16,16 @@ public class GameStatus : MonoBehaviour
     //Pause Menu
     private bool isGamePaused = false;
     
-    //Select Button
-    private bool isSelectTriggered = false;
+    //Select Button, it's true by default
+    private bool isSelectTriggered = true;
 
     #region PUBLIC ACTION EVENTS
     public static event Action onLevelStarted;
     public static event Action onLevelCompleted;
     public static event Action onGamePaused;
     public static event Action onGameResumed;
-    public static event Action onSelectUsed; 
+    public static event Action onSelectEnabled;
+    public static event Action onSelectDisabled;
     public static event Action<float> onPlayerHurt;
     public static event Action onPlayerLost;
     #endregion
@@ -50,6 +51,9 @@ public class GameStatus : MonoBehaviour
         // Input Actions
         pauseMenuButton.action.started += OnPauseMenuTriggered;
         selectButton.action.started += OnSelectTriggered;
+        
+        // Select is enabled by default
+        onSelectEnabled?.Invoke();
     }
     #endregion
     
@@ -83,7 +87,17 @@ public class GameStatus : MonoBehaviour
     
     public void OnSelectTriggered(InputAction.CallbackContext context)
     {
-        // Select triggered
+        if (isSelectTriggered)
+        {
+            // Disable Select
+            onSelectDisabled?.Invoke();
+        }
+        else
+        {
+            // Enable Select
+            onSelectEnabled?.Invoke();
+        }
+        
         isSelectTriggered = !isSelectTriggered;
     }
 
