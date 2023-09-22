@@ -5,10 +5,14 @@ using UnityEngine;
 public class Cinematic : MonoBehaviour
 {
     [SerializeField] private Animator transition;
-    public float transitionTime = 5.0f;
+    private float transitionTime = 3.0f;
     public Dialogue dialogue;
     public GameObject Cinematica;
 
+    private void Start()
+    {
+        transitionTime = FindObjectOfType<SceneLoader>().transitionTime;
+    }
     private void Update()
     {
     }
