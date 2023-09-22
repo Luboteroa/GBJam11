@@ -10,8 +10,6 @@ public class OptionsGame : MonoBehaviour
     public EventSystem eventSystem; 
     public EventSystem eventSystemOptions;
     public GameObject menu;
-    public TMP_Text musicLabel, sfxLabel;
-    float volumenLevel = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
