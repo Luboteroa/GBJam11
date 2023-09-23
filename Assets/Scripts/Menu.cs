@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private GameObject creditsObject; 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && creditsObject.activeSelf)
-        {
-            creditsObject.SetActive(false);
-        }
     }
+
+    public void LoadCredits()
+    {
+        SceneLoader.Instance.LoadLevel("Credits");
+    }
+
 }
