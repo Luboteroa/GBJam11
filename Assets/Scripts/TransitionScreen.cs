@@ -20,9 +20,7 @@ public class TransitionScreen : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             StartCoroutine(Load(Object));
-            
         }
-
     }
 
     IEnumerator Load(GameObject Cinematic)
