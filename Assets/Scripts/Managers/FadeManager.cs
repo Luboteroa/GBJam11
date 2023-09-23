@@ -6,10 +6,12 @@ public class FadeManager : MonoBehaviour
 {
     [Header("Animation Settings")] 
     [SerializeField] private Animator fadeAnimator;
+    [SerializeField] private float animationTime = 1f;
     
     public static string KEY_Fade = "Fade";
     
-    private bool isFading = false;
+    private bool isAnimating = false;
+    private bool isFadeInActive = false;
     
     #region SINGLETON
     public static FadeManager Instance{ get; private set; }
@@ -22,26 +24,34 @@ public class FadeManager : MonoBehaviour
 #endif
             Destroy(this.gameObject);
         }
-        else 
+        else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
     #endregion
 
-    public static void ActiveFadeIn()
+    public void ActiveFade()
     {
-        Instance.isFading = true;
-        Instance.fadeAnimator.SetTrigger(KEY_Fade);
+        isAnimating = true;
+        fadeAnimator.SetTrigger(KEY_Fade);
+        
+        if(isFadeInActive)
+            Invoke(nameof(FadeOutCompleted), animationTime);
+        else
+            Invoke(nameof(FadeInCompleted), animationTime);
+        
+        isFadeInActive = !isFadeInActive;
     }
 
     public void FadeInCompleted()
     {
-        isFading = false;
+        isAnimating = false;
     }
 
     public void FadeOutCompleted()
     {
-        isFading = false;
+        isAnimating = false;
     }
 }

@@ -30,11 +30,11 @@ public class Options : MonoBehaviour
 
     void SetSFXVolumen()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             DisminuirVolumen(sfxLabel);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             AumentarVolumen(sfxLabel);
         }
@@ -42,11 +42,11 @@ public class Options : MonoBehaviour
 
     void SetMusicVolumen()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             DisminuirVolumen(musicLabel);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             AumentarVolumen(musicLabel);
         }

@@ -69,8 +69,12 @@ public class LevelHandler : MonoBehaviour
         else
             return false;
     }
-    
+
+    #region PUBLIC FUNCTIONS
     public void ChargeLevel() => SceneManager.LoadScene(currentLevel);
+    public void ChageExactScene(string sceneName) => SceneManager.LoadScene(sceneName);
+    
+    #endregion
     
     #endregion
 
