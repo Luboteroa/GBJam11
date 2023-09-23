@@ -2779,15 +2779,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 1959414267}
-  transitionTime: 3
   dialogue:
     name: Npc
     sentences:
     - Hola esta es una prueba
     - Como estas
-    - Lindo hermoso precioso
-    - que bacano
-    - Hola gente
   Cinematica: {fileID: 1958820008}
 --- !u!1 &1770757074
 GameObject:
