@@ -3,16 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelHandler : MonoBehaviour
 {
+    [SerializeField] private string scenePrefix = "Level ";
     public static LevelHandler Instance { get; private set; }
 
-    #region PUBLIC EVENTS
-
-    public static event Action onLoadLevel;
-
-    #endregion
+    private string currentLevel = "";
 
     private void Awake()
     {
@@ -36,45 +34,58 @@ public class LevelHandler : MonoBehaviour
 
     private void Start()
     {
+        GameStatus.onLevelCompleted += LoadNextLevel;
+        GameStatus.onPlayerLost += PlayerDead;
+    }
+
+    #region LEVEL METHODS
+
+    private void LoadNextLevel()
+    {
+        GlobalInformation.UpgradeSublevelCount();
+
+        currentLevel = scenePrefix + GlobalInformation.LevelLoaded + "-" + GlobalInformation.SubLevelLoaded;
+    }
+
+    private void ResetSubLevel()
+    {
+        GlobalInformation.ResetSublevelCount();
         
+        currentLevel = scenePrefix + GlobalInformation.LevelLoaded + "-" + GlobalInformation.SubLevelLoaded;
     }
 
-    #region PUBLIC FUNCTIONS
-
-    public void TriggerNextLevel()
+    private void ResetCurrentLevel()
     {
-        onLoadLevel?.Invoke();
+        currentLevel = scenePrefix + GlobalInformation.LevelLoaded + "-" + GlobalInformation.SubLevelLoaded;
     }
-
-    public void ResetCurrentLevel()
+    
+    private bool MustResetSubLevel()
     {
-        onLoadLevel?.Invoke();
-    }
+        int currentRemainingLifes = GlobalInformation.GlobalRemainingLifes-1;
+        GlobalInformation.ChangeGlobalLifes(currentRemainingLifes);
 
-    public void ResetGlobalLevel()
-    {
-        onLoadLevel?.Invoke();
+        if (currentRemainingLifes > 0)
+            return true;
+        else
+            return false;
     }
-
-    public void LoadCurrentLevel()
-    {
-        onLoadLevel?.Invoke();
-    }
-
+    
+    public void ChargeLevel() => SceneManager.LoadScene(currentLevel);
+    
     #endregion
 
-    private int GetCurrentGlobalLives()
+    #region PLAYER METHODS
+    private void PlayerDead()
     {
-        return 0;
+        if (MustResetSubLevel())
+        {
+            ResetSubLevel();
+        }
+        else
+        {
+            ResetCurrentLevel();
+        }
     }
-
-    private int GetCurrentLevel()
-    {
-        return 0;
-    }
-
-    private int GetCurrentSublevel()
-    {
-        return 0;
-    }
+    
+    #endregion
 }
