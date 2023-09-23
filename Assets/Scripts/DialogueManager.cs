@@ -5,20 +5,15 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    private Queue<string> sentences;
+    private Queue<string> sentences = new Queue<string>();
 
     public TMP_Text nameText;
     public TMP_Text dialogueText;
 
     public Animator animator;
-    void Start()
-    {
-        sentences = new Queue<string>();
-    }
 
     public void StartDialogue(Dialogue dialogue)
     {
-        Debug.Log("Es hoy");
         animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;

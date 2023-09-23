@@ -47,7 +47,6 @@ public class SceneLoader : MonoBehaviour
         transition.SetTrigger("Start");
 
         SceneManager.LoadScene(levelIndex);
-
     }
 
     IEnumerator LoadLevelName(string level)
