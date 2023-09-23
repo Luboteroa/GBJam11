@@ -33,6 +33,11 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void LoadLevel(string Level)
+    {
+        StartCoroutine(LoadLevelName(Level));
+    }
+
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
@@ -42,6 +47,18 @@ public class SceneLoader : MonoBehaviour
         transition.SetTrigger("Start");
 
         SceneManager.LoadScene(levelIndex);
+
+    }
+
+    IEnumerator LoadLevelName(string level)
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        transition.SetTrigger("Start");
+
+        SceneManager.LoadScene(level);
 
     }
 
