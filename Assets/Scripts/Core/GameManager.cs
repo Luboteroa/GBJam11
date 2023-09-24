@@ -41,9 +41,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("W"))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            // WIN THIS LEVEL!
+            // WON THIS LEVEL!
             Debug.Log("WON");
         }
     }
