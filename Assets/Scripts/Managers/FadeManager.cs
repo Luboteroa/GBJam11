@@ -11,7 +11,7 @@ public class FadeManager : MonoBehaviour
     public static string KEY_Fade = "Fade";
     
     private bool isAnimating = false;
-    private bool isFadeInActive = false;
+    private bool isFadeInActive = true;
     
     #region SINGLETON
     public static FadeManager Instance{ get; private set; }

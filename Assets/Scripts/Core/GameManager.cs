@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,4 +26,29 @@ public class GameManager : MonoBehaviour
 
         gameStatus = GetComponent<GameStatus>();
     }
+
+    private void Start()
+    {
+        if (FadeManager.Instance != null)
+        {
+            FadeManager.Instance.ActiveFade();
+        }
+    }
+
+    #region DEBUG
+
+    #if UNITY_EDITOR
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("W"))
+        {
+            // WIN THIS LEVEL!
+            Debug.Log("WON");
+        }
+    }
+
+#endif
+
+    #endregion
 }

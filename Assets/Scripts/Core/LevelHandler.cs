@@ -43,20 +43,18 @@ public class LevelHandler : MonoBehaviour
     private void LoadNextLevel()
     {
         GlobalInformation.UpgradeSublevelCount();
-
-        currentLevel = scenePrefix + GlobalInformation.LevelLoaded + "-" + GlobalInformation.SubLevelLoaded;
+        LoadLevel();
     }
 
     private void ResetSubLevel()
     {
         GlobalInformation.ResetSublevelCount();
-        
-        currentLevel = scenePrefix + GlobalInformation.LevelLoaded + "-" + GlobalInformation.SubLevelLoaded;
+        LoadLevel();
     }
 
     private void ResetCurrentLevel()
     {
-        currentLevel = scenePrefix + GlobalInformation.LevelLoaded + "-" + GlobalInformation.SubLevelLoaded;
+        LoadLevel();
     }
     
     private bool MustResetSubLevel()
@@ -71,9 +69,14 @@ public class LevelHandler : MonoBehaviour
     }
 
     #region PUBLIC FUNCTIONS
-    public void ChargeLevel() => SceneManager.LoadScene(currentLevel);
-    public void ChageExactScene(string sceneName) => SceneManager.LoadScene(sceneName);
-    
+
+    public void LoadLevel()
+    {
+        currentLevel = scenePrefix + GlobalInformation.LevelLoaded + "-" + GlobalInformation.SubLevelLoaded;
+        SceneManager.LoadScene(currentLevel);
+    } 
+    public void LoadExactScene(string sceneName) => SceneManager.LoadScene(sceneName);
+
     #endregion
     
     #endregion

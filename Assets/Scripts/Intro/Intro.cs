@@ -6,6 +6,12 @@ using UnityEngine;
 public class Intro : MonoBehaviour
 {
     [SerializeField] private string nextSceneToLoad = "1_MainMenu";
+
+    private void Start()
+    {
+        FadeManager.Instance.ActiveFade();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
@@ -17,6 +23,6 @@ public class Intro : MonoBehaviour
 
     private void NextSceneToLoad()
     {
-        LevelHandler.Instance.ChageExactScene(nextSceneToLoad);
+        LevelHandler.Instance.LoadExactScene(nextSceneToLoad);
     }
 }

@@ -7,24 +7,24 @@ using UnityEngine.InputSystem;
 public class GlobalInformation : MonoBehaviour
 {
     // First Player Information
-    private static int maxLocalHp = 3;
-    private static int maxGlobalLifes = 3;
     private static int firstLevel = 1;
     private static int firstSublevel = 1;
+    private static int maxLocalHp = 3;
+    private static int maxGlobalLifes = 3;
     private static int normalGeneralVolume = 100;
     private static int normalMusicVolume = 100;
 
     // Level Info
-    public static int LevelLoaded { get; private set; }
-    public static int SubLevelLoaded { get; private set; }
+    public static int LevelLoaded { get; private set; } = 1;
+    public static int SubLevelLoaded { get; private set; } = 1;
     
     // Player Info
-    public static int LocalRemainingHp { get; private set; }
-    public static int GlobalRemainingLifes { get; private set; }
+    public static int LocalRemainingHp { get; private set; } = 3;
+    public static int GlobalRemainingLifes { get; private set; } = 3;
     
     // Settings Info
-    public static int GeneralSoundVolume { get; private set; }
-    public static int GeneralMusicVolume { get; private set; }
+    public static int GeneralSoundVolume { get; private set; } = 100;
+    public static int GeneralMusicVolume { get; private set; } = 100;
     
     // KEYS
     private const string KEY_Level = "CURR_LVL";
