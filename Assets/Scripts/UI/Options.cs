@@ -9,10 +9,12 @@ public class Options : MonoBehaviour
 {
     public TMP_Text musicLabel, sfxLabel;
     float volumenLevel = 10.0f;
+
+    private AudioClip soundClick;
     // Start is called before the first frame update
     void Start()
     {
-        
+        soundClick = FindObjectOfType<Menu>().soundClick;
     }
 
     // Update is called once per frame
@@ -32,10 +34,12 @@ public class Options : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            SoundManager.Instance.PlayAudio(soundClick);
             DisminuirVolumen(sfxLabel);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            SoundManager.Instance.PlayAudio(soundClick);
             AumentarVolumen(sfxLabel);
         }
     }
@@ -44,10 +48,12 @@ public class Options : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            SoundManager.Instance.PlayAudio(soundClick);
             DisminuirVolumen(musicLabel);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            SoundManager.Instance.PlayAudio(soundClick);
             AumentarVolumen(musicLabel);
         }
     }
