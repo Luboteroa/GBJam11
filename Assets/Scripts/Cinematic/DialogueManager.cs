@@ -12,6 +12,28 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
+    public AudioClip textAudio;
+
+
+    #region SINGLETON
+    public static DialogueManager Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+#if DEBUG
+            Debug.LogWarning("You created two instances for " + this.name + "! Please check!");
+#endif
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+    #endregion
+
     public void StartDialogue(Dialogue dialogue)
     {
         animator.SetBool("IsOpen", true);
@@ -43,9 +65,12 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeSentence(string Sentence)
     {
         dialogueText.text = "";
-        foreach(char letter in Sentence.ToCharArray())
+
+        foreach (char letter in Sentence.ToCharArray())
         {
             dialogueText.text += letter;
+            SoundManager.Instance.PlayAudioSFX(textAudio);
+            yield return new WaitForSeconds(0.2f);
             yield return null;
         }
     }

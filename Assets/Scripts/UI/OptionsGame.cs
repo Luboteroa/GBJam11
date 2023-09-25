@@ -10,6 +10,10 @@ public class OptionsGame : MonoBehaviour
     public EventSystem eventSystem; 
     public EventSystem eventSystemOptions;
     public GameObject menu;
+
+    public AudioClip soundHover;
+    public AudioClip soundClick;
+    public AudioClip soundBack;
     // Start is called before the first frame update
     void Start()
     {
