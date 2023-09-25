@@ -155,7 +155,7 @@ MonoBehaviour:
   nameText: {fileID: 0}
   dialogueText: {fileID: 0}
   animator: {fileID: 0}
-  textAudio: {fileID: 0}
+  textAudio: {fileID: 8300000, guid: ed11d88e97919e247b457a643b568ba3, type: 3}
 --- !u!4 &221121525
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,9 +2427,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fcd824e2fb01b842a7d5296a567cf2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundHover: {fileID: 0}
-  soundClick: {fileID: 0}
-  soundBack: {fileID: 0}
+  soundHover: {fileID: 8300000, guid: 593f01d2aba66b845bfbbfaaf8ee73c9, type: 3}
+  soundClick: {fileID: 8300000, guid: f2a9a033c2943e743b8fd11770664210, type: 3}
+  soundBack: {fileID: 8300000, guid: 3ce71351510a48748b102b9cd25d4e32, type: 3}
 --- !u!4 &1721099791
 Transform:
   m_ObjectHideFlags: 0
