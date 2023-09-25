@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class Credits : MonoBehaviour
 {
-    public void Update()
-    {
-        if (Input.GetButtonDown("Jump"))
-        {
-            SceneLoader.Instance.LoadLevel("1_MainMenu");
-        }
+    [SerializeField] private string nextSceneToLoad = "1_MainMenu";
 
+    private void Start()
+    {
+        FadeManager.Instance.ActiveFade();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            FadeManager.Instance.ActiveFade();
+            Invoke(nameof(NextSceneToLoad), 1.0f);
+        }
+    }
+
+    private void MainMenu()
+    {
+        FadeManager.Instance.ActiveFade();
+        Invoke(nameof(NextSceneToLoad), 1.0f);
+    }
+    private void NextSceneToLoad()
+    {
+        LevelHandler.Instance.LoadExactScene(nextSceneToLoad);
     }
 }
