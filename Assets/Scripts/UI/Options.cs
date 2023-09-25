@@ -9,6 +9,7 @@ using UnityEngine.Audio;
 
 public class Options : MonoBehaviour
 {
+    [SerializeField] private MainMenu mainMenu;
     public TMP_Text musicLabel, sfxLabel;
     float volumenLevelSFX = 7.0f;
     float volumenLevelMusic = 7.0f;

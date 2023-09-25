@@ -2032,6 +2032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1b4131eefa8d548b0b0b0fb878b76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: {fileID: 0}
   musicLabel: {fileID: 255423837}
   sfxLabel: {fileID: 1812981545}
 --- !u!1 &1597300986
@@ -2842,6 +2843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087885576}
   - component: {fileID: 2087885577}
+  - component: {fileID: 2087885578}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -2874,6 +2876,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2986b942ec3007a4f872a1350edcb195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundGenerator: {fileID: 2087885578}
+  moveAudio: {fileID: 8300000, guid: 19eb1d1c2f039af408ed22010d9d1cd3, type: 3}
+  clickAudio: {fileID: 8300000, guid: 137fb5e4f4ef011429a65752b71ccc31, type: 3}
+  backAudio: {fileID: 8300000, guid: 5b477f034a62c3143a84ee04afbd9f7e, type: 3}
+--- !u!114 &2087885578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087885575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6e5d683a8795e46ba049f2d66c26ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

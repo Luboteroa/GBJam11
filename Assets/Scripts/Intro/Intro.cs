@@ -7,6 +7,8 @@ public class Intro : MonoBehaviour
 {
     [SerializeField] private AudioClip introMusic;
     [SerializeField] private string nextSceneToLoad = "1_MainMenu";
+    [SerializeField] private SoundGenerator soundGenerator;
+    [SerializeField] private AudioClip nextSceneSound;
 
     private void Start()
     {
@@ -18,6 +20,7 @@ public class Intro : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             FadeManager.Instance.ActiveFade();
+            soundGenerator.TriggerSound(nextSceneSound);
             Invoke(nameof(NextSceneToLoad), 1.0f);
         }
     }

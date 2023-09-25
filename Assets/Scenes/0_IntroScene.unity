@@ -732,6 +732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2009879789}
   - component: {fileID: 2009879790}
+  - component: {fileID: 2009879791}
   m_Layer: 0
   m_Name: Intro
   m_TagString: Untagged
@@ -768,6 +769,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   introMusic: {fileID: 8300000, guid: eb93c410949000b40af19c9f8ef3c250, type: 3}
   nextSceneToLoad: 1_MainMenu
+  soundGenerator: {fileID: 2009879791}
+  nextSceneSound: {fileID: 8300000, guid: 137fb5e4f4ef011429a65752b71ccc31, type: 3}
+--- !u!114 &2009879791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009879788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6e5d683a8795e46ba049f2d66c26ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2111240897
 GameObject:
   m_ObjectHideFlags: 0
