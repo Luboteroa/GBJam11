@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Intro : MonoBehaviour
 {
+    [SerializeField] private AudioClip introMusic;
     [SerializeField] private string nextSceneToLoad = "1_MainMenu";
 
     private void Start()
     {
         FadeManager.Instance.ActiveFade();
+        SoundManager.Instance.PlayAudioMusic(introMusic);
     }
 
     private void Update()

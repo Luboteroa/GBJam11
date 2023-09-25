@@ -42,6 +42,5 @@ public class SoundManager : MonoBehaviour
         audioSource.outputAudioMixerGroup = musicGroup;
         audioSource.clip = audio;
         audioSource.loop = true;
-        audioSource.PlayOneShot(audio);
     }
 }
