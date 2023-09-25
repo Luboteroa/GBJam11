@@ -4,17 +4,23 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class OptionsPop : MonoBehaviour
 {
     public TMP_Text musicLabel, sfxLabel;
-    float volumenLevel = 10.0f;
+    float volumenLevelSFX = 10.0f;
+    float volumenLevelMusic = 10.0f;
 
     private AudioClip soundClick;
+
+    private AudioMixer audioMixer; 
+
     // Start is called before the first frame update
     void Start()
     {
         soundClick = FindObjectOfType<OptionsGame>().soundClick;
+        audioMixer = FindObjectOfType<SoundManager>().audioMixer;
     }
 
     // Update is called once per frame
@@ -35,13 +41,13 @@ public class OptionsPop : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            SoundManager.Instance.PlayAudio(soundClick);
-            DisminuirVolumen(sfxLabel);
+            SoundManager.Instance.PlayAudioSFX(soundClick);
+            DisminuirVolumen(sfxLabel, "SFXVol", ref volumenLevelSFX);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            SoundManager.Instance.PlayAudio(soundClick);
-            AumentarVolumen(sfxLabel);
+            SoundManager.Instance.PlayAudioSFX(soundClick);
+            AumentarVolumen(sfxLabel, "SFXVol", ref volumenLevelSFX);
         }
     }
 
@@ -49,28 +55,29 @@ public class OptionsPop : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            SoundManager.Instance.PlayAudio(soundClick);
-            DisminuirVolumen(musicLabel);
+            SoundManager.Instance.PlayAudioSFX(soundClick);
+            DisminuirVolumen(musicLabel, "MusicVol", ref volumenLevelMusic);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            SoundManager.Instance.PlayAudio(soundClick);
-            AumentarVolumen(musicLabel);
+            SoundManager.Instance.PlayAudioSFX(soundClick);
+            AumentarVolumen(musicLabel, "MusicVol", ref volumenLevelMusic);
         }
     }
 
-    public void AumentarVolumen(TMP_Text volumen)
+    public void AumentarVolumen(TMP_Text volumen, string group, ref float volumenLevel)
     {
         volumenLevel = Mathf.Min(volumenLevel + 1.0f, 10.0f);
-
+        audioMixer.SetFloat(group, -5 * (10 - volumenLevel));
         volumen.SetText(volumenLevel.ToString());
 
     }
 
-    public void DisminuirVolumen(TMP_Text volumen)
+    public void DisminuirVolumen(TMP_Text volumen, string group, ref float volumenLevel)
     {
+        Debug.Log(volumenLevel);
         volumenLevel = Mathf.Max(volumenLevel - 1.0f, 0.0f);
-
+        audioMixer.SetFloat(group, -5 * (10 - volumenLevel));
         volumen.SetText(volumenLevel.ToString());
     }
 }

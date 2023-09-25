@@ -18,16 +18,16 @@ public class SoundButton : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        SoundManager.Instance.PlayAudio(soundHover);
+        SoundManager.Instance.PlayAudioSFX(soundHover);
     }
 
     public void OnClick()
     {
-        SoundManager.Instance.PlayAudio(soundClick);
+        SoundManager.Instance.PlayAudioSFX(soundClick);
     }
     public void OnBack()
     {
-        SoundManager.Instance.PlayAudio(soundBack);
+        SoundManager.Instance.PlayAudioSFX(soundBack);
     }
 
 }

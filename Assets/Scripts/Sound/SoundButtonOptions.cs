@@ -15,12 +15,12 @@ public class SoundButtonOptions : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        SoundManager.Instance.PlayAudio(soundHover);
+        SoundManager.Instance.PlayAudioSFX(soundHover);
     }
 
     public void OnBack()
     {
-        SoundManager.Instance.PlayAudio(soundBack);
+        SoundManager.Instance.PlayAudioSFX(soundBack);
     }
 
 }
