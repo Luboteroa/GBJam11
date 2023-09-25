@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Cinematic : MonoBehaviour
 {
-    private bool isCinematicActive = false;
-    
     #region SINGLETON
     public static Cinematic Instance{ get; private set; }
     private void Awake()
@@ -27,16 +25,16 @@ public class Cinematic : MonoBehaviour
 
     public void ActiveCinematic()
     {
-        isCinematicActive = true;
+        FadeManager.Instance.ActiveFade();
     }
 
     public void DiactiveCinematic()
     {
-        isCinematicActive = false;
         if (FadeManager.Instance != null)
         {
             FadeManager.Instance.ActiveFade();
         }
+        
         Destroy(this.gameObject, 1.0f);
     }
 
@@ -47,6 +45,12 @@ public class Cinematic : MonoBehaviour
             // Saltar cinemática
             DiactiveCinematic();
         }
+    }
+
+    private void OnDestroy()
+    {
+        if(GameManager.Instance != null)
+            GameManager.Instance.StartGame();
     }
 }
 

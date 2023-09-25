@@ -11,7 +11,6 @@ public class FadeManager : MonoBehaviour
     
     public static string KEY_Fade = "Fade";
     
-    private bool isAnimating = false;
     private bool isFadeInActive = true;
     
     #region SINGLETON
@@ -35,30 +34,17 @@ public class FadeManager : MonoBehaviour
 
     public void ActiveFade()
     {
-        isAnimating = true;
         fadeAnimator.SetTrigger(KEY_Fade);
 
         if (isFadeInActive)
-        {
-            Invoke(nameof(FadeOutCompleted), animationTime);   
+        {  
             SoundManager.Instance.LerpFadeIn();
         }
         else
         {
-            Invoke(nameof(FadeInCompleted), animationTime);   
             SoundManager.Instance.LerpFadeOut();
         }
 
         isFadeInActive = !isFadeInActive;
-    }
-
-    public void FadeInCompleted()
-    {
-        isAnimating = false;
-    }
-
-    public void FadeOutCompleted()
-    {
-        isAnimating = false;
     }
 }

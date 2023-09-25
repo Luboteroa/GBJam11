@@ -29,11 +29,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (FadeManager.Instance != null)
-        {
-            FadeManager.Instance.ActiveFade();
-        }
-
         if (Cinematic.Instance != null)
         {
             // Have to deploy cinematic!
@@ -44,6 +39,11 @@ public class GameManager : MonoBehaviour
             // There is no cinematic for this level!
             // ActiveStageCanvas();
         }
+    }
+
+    public void StartGame()
+    {
+        FadeManager.Instance.ActiveFade();
     }
 
     #region DEBUG

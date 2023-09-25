@@ -14,6 +14,11 @@ public class SoundGenerator : MonoBehaviour
         mAudioSource.loop = false;
         mAudioSource.volume = GlobalInformation.GeneralSoundVolume;
         mAudioSource.spatialBlend = 0.0f;
+
+        if (this.tag == "Low")
+        {
+            mAudioSource.volume = 0.01f;
+        }
     }
 
     public void TriggerSound(AudioClip sfxSound)
