@@ -39,45 +39,46 @@ public class OptionsPop : MonoBehaviour
 
     void SetSFXVolumen()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            SoundManager.Instance.PlayAudioSFX(soundClick);
+            //SoundManager.Instance.PlayAudioSFX(soundClick);
             DisminuirVolumen(sfxLabel, "SFXVol", ref volumenLevelSFX);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
-            SoundManager.Instance.PlayAudioSFX(soundClick);
+            //SoundManager.Instance.PlayAudioSFX(soundClick);
             AumentarVolumen(sfxLabel, "SFXVol", ref volumenLevelSFX);
         }
+        GlobalInformation.ChangeSoundVolume(volumenLevelSFX/10);
     }
 
     void SetMusicVolumen()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            SoundManager.Instance.PlayAudioSFX(soundClick);
+            //SoundManager.Instance.PlayAudioSFX(soundClick);
             DisminuirVolumen(musicLabel, "MusicVol", ref volumenLevelMusic);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
-            SoundManager.Instance.PlayAudioSFX(soundClick);
+            //SoundManager.Instance.PlayAudioSFX(soundClick);
             AumentarVolumen(musicLabel, "MusicVol", ref volumenLevelMusic);
         }
+        GlobalInformation.ChangeMusicVolume(volumenLevelSFX/10);
     }
 
     public void AumentarVolumen(TMP_Text volumen, string group, ref float volumenLevel)
     {
-        volumenLevel = Mathf.Min(volumenLevel + 1.0f, 10.0f);
-        audioMixer.SetFloat(group, -5 * (10 - volumenLevel));
+        volumenLevel = Mathf.Min(volumenLevel + 1.0f, 100.0f);
+        //audioMixer.SetFloat(group, -5 * (10 - volumenLevel));
         volumen.SetText(volumenLevel.ToString());
-
     }
 
     public void DisminuirVolumen(TMP_Text volumen, string group, ref float volumenLevel)
     {
         Debug.Log(volumenLevel);
         volumenLevel = Mathf.Max(volumenLevel - 1.0f, 0.0f);
-        audioMixer.SetFloat(group, -5 * (10 - volumenLevel));
+        //audioMixer.SetFloat(group, -5 * (10 - volumenLevel));
         volumen.SetText(volumenLevel.ToString());
     }
 }

@@ -11,7 +11,6 @@ public class Intro : MonoBehaviour
     private void Start()
     {
         FadeManager.Instance.ActiveFade();
-        SoundManager.Instance.PlayAudioMusic(introMusic);
     }
 
     private void Update()

@@ -11,8 +11,8 @@ public class GlobalInformation : MonoBehaviour
     private static int firstSublevel = 1;
     private static int maxLocalHp = 3;
     private static int maxGlobalLifes = 3;
-    private static int normalGeneralVolume = 100;
-    private static int normalMusicVolume = 100;
+    private static float normalGeneralVolume = 0.7f;
+    private static float normalMusicVolume = 0.7f;
 
     // Level Info
     public static int LevelLoaded { get; private set; } = 1;
@@ -23,8 +23,8 @@ public class GlobalInformation : MonoBehaviour
     public static int GlobalRemainingLifes { get; private set; } = 3;
     
     // Settings Info
-    public static int GeneralSoundVolume { get; private set; } = 100;
-    public static int GeneralMusicVolume { get; private set; } = 100;
+    public static float GeneralSoundVolume { get; private set; } = 0.7f;
+    public static float GeneralMusicVolume { get; private set; } = 0.7f;
     
     // KEYS
     private const string KEY_Level = "CURR_LVL";
@@ -53,9 +53,9 @@ public class GlobalInformation : MonoBehaviour
         if(PlayerPrefs.HasKey(KEY_GlobalLifes))
             GlobalRemainingLifes = PlayerPrefs.GetInt(KEY_GlobalLifes);
         if(PlayerPrefs.HasKey(KEY_SoundVol))
-            GeneralSoundVolume = PlayerPrefs.GetInt(KEY_SoundVol);
+            GeneralSoundVolume = PlayerPrefs.GetFloat(KEY_SoundVol);
         if(PlayerPrefs.HasKey(KEY_MusicVol)) 
-            GeneralMusicVolume = PlayerPrefs.GetInt(KEY_MusicVol);
+            GeneralMusicVolume = PlayerPrefs.GetFloat(KEY_MusicVol);
     }
 
     #endregion
@@ -121,25 +121,25 @@ public class GlobalInformation : MonoBehaviour
     }
         
     // Settings Info
-    public static void ChangeSoundVolume(int newVolume)
+    public static void ChangeSoundVolume(float newVolume)
     {
         if (PlayerPrefs.HasKey(KEY_SoundVol))
-            PlayerPrefs.SetInt(KEY_SoundVol, newVolume);
+            PlayerPrefs.SetFloat(KEY_SoundVol, newVolume);
         else
-            PlayerPrefs.SetInt(KEY_SoundVol, normalGeneralVolume);
+            PlayerPrefs.SetFloat(KEY_SoundVol, normalGeneralVolume);
         
-        GeneralSoundVolume = PlayerPrefs.GetInt(KEY_SoundVol);
+        GeneralSoundVolume = PlayerPrefs.GetFloat(KEY_SoundVol);
         PlayerPrefs.Save();
     }
 
-    public static void ChangeMusicVolume(int newVolume)
+    public static void ChangeMusicVolume(float newVolume)
     {
         if (PlayerPrefs.HasKey(KEY_MusicVol))
-            PlayerPrefs.SetInt(KEY_MusicVol, newVolume);
+            PlayerPrefs.SetFloat(KEY_MusicVol, newVolume);
         else
-            PlayerPrefs.SetInt(KEY_MusicVol, normalMusicVolume);
+            PlayerPrefs.SetFloat(KEY_MusicVol, normalMusicVolume);
         
-        GeneralMusicVolume = PlayerPrefs.GetInt(KEY_MusicVol);
+        GeneralMusicVolume = PlayerPrefs.GetFloat(KEY_MusicVol);
         PlayerPrefs.Save();
     }
 }

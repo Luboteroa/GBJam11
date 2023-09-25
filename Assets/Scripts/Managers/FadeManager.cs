@@ -7,6 +7,7 @@ public class FadeManager : MonoBehaviour
     [Header("Animation Settings")] 
     [SerializeField] private Animator fadeAnimator;
     [SerializeField] private float animationTime = 1f;
+    public float AnimationTime => animationTime;
     
     public static string KEY_Fade = "Fade";
     
@@ -36,12 +37,18 @@ public class FadeManager : MonoBehaviour
     {
         isAnimating = true;
         fadeAnimator.SetTrigger(KEY_Fade);
-        
-        if(isFadeInActive)
-            Invoke(nameof(FadeOutCompleted), animationTime);
+
+        if (isFadeInActive)
+        {
+            Invoke(nameof(FadeOutCompleted), animationTime);   
+            SoundManager.Instance.LerpFadeIn();
+        }
         else
-            Invoke(nameof(FadeInCompleted), animationTime);
-        
+        {
+            Invoke(nameof(FadeInCompleted), animationTime);   
+            SoundManager.Instance.LerpFadeOut();
+        }
+
         isFadeInActive = !isFadeInActive;
     }
 
