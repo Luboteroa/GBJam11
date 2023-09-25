@@ -33,6 +33,17 @@ public class GameManager : MonoBehaviour
         {
             FadeManager.Instance.ActiveFade();
         }
+
+        if (Cinematic.Instance != null)
+        {
+            // Have to deploy cinematic!
+            Cinematic.Instance.ActiveCinematic();
+        }
+        else
+        {
+            // There is no cinematic for this level!
+            // ActiveStageCanvas();
+        }
     }
 
     #region DEBUG
@@ -41,9 +52,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("W"))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            // WIN THIS LEVEL!
+            // WON THIS LEVEL!
             Debug.Log("WON");
         }
     }

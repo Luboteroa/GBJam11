@@ -8,7 +8,7 @@ public class Credits : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            SceneLoader.Instance.LoadLevel("MainSceneTemplate");
+            SceneLoader.Instance.LoadLevel("1_MainMenu");
         }
 
     }

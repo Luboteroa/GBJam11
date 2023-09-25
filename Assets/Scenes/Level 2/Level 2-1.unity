@@ -483,6 +483,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1590685632656400837, guid: f97a704dc54af1c40847fc1103ea1b09, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7b3658fb8f6158447b1b5c986b08debc, type: 3}
     - target: {fileID: 3476346766294320183, guid: f97a704dc54af1c40847fc1103ea1b09, type: 3}
       propertyPath: m_Name
       value: Cinematic
@@ -527,6 +531,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7808547669161393022, guid: f97a704dc54af1c40847fc1103ea1b09, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c5f5b547bad9bf641a57fff0204e01f6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

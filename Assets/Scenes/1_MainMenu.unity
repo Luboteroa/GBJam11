@@ -2725,16 +2725,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725956412}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 096da92ce8d348747a398fc7b6a00b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 0}
-  dialogue:
-    name: 
-    sentences: []
-  Cinematica: {fileID: 0}
 --- !u!1 &1770757074
 GameObject:
   m_ObjectHideFlags: 0
