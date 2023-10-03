@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Input")]
     [SerializeField] private float speed=5f;
     [SerializeField] private float jump=8f;
-    [SerializeField] private float jumpFall = 6f;
+    [SerializeField] private float jumpFall = 5f;
     [Header("Physics")]       
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -112,14 +112,14 @@ public class PlayerController : MonoBehaviour
     }
         #endregion
 
-        #region ATTACK
+    #region ATTACK
     private void Attack(InputAction.CallbackContext context)
     { 
         if(_weapon.canAttack == true)
         {
             Debug.Log("entra");
             isAttacking = true;
-            _bullet.Shot();
+            //_bullet.Shot();
         } 
     }
     private void FinishAttack(InputAction.CallbackContext context)
