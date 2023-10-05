@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckRadius;
     [SerializeField] private Weapon _weapon;
-    [SerializeField] private Bullet _bullet;
-
+     
+    private ShotPlayer _shotPlayer;
     private Vector2 playerMovement;
     private Controls playerInput;
     private Rigidbody2D rb;
@@ -23,14 +23,14 @@ public class PlayerController : MonoBehaviour
     private bool isJump;
     private bool isGrounded;
     private bool down;
-    private bool isFacingRight = true;
     private int direction = 1;
 
-
+    public bool isFacingRight = true;
     private void Awake()
     {
         playerInput = new Controls();
         rb = GetComponent<Rigidbody2D>();
+        _shotPlayer = GetComponent<ShotPlayer>();
         
         playerInput.PlayerGame.Attack.started += Attack;
         playerInput.PlayerGame.Attack.canceled += FinishAttack;
@@ -107,7 +107,6 @@ public class PlayerController : MonoBehaviour
             direction = isFacingRight ? 1 : -1;
             isFacingRight = true;
         }
-
         transform.localScale = new Vector2(transform.localScale.x * direction, transform.localScale.y);
     }
         #endregion
@@ -117,9 +116,8 @@ public class PlayerController : MonoBehaviour
     { 
         if(_weapon.canAttack == true)
         {
-            Debug.Log("entra");
             isAttacking = true;
-            //_bullet.Shot();
+            _shotPlayer.Shot();
         } 
     }
     private void FinishAttack(InputAction.CallbackContext context)

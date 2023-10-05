@@ -1,41 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Quaternion = System.Numerics.Quaternion;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private GameObject shot;
-    [SerializeField] private Transform fire;
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private float damage = 5f;
 
-    public float speed = 2f;
-    public Vector2 direction;
-    public float livingTime = 3f;
-
-
-    private float startingTime;
+    private GameObject player;
 
     private void Awake()
     {
-        fire = transform.Find("Fire");
+        player = GameObject.Find("Player");
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        startingTime = Time.time;
-        Destroy(gameObject, livingTime);
+      DirectionBullet();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DirectionBullet()
     {
-        Vector2 movement = direction.normalized * speed * Time.deltaTime;
-        // transform.position = new Vector2(transform.position.x + movement.x, transform.position.y + movement.y);
-        transform.Translate(movement);
-    }
-    public void Shot()
-    {
-        Instantiate(shot, fire.position, Quaternion.identity);
-        transform.Translate(Vector2.right * Time.deltaTime);
+        if (player.transform.localScale.x < 0f)
+        {
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+        }
+        Destroy(gameObject,2f);
     }
 }
